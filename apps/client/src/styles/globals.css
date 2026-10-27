@@ -1,0 +1,248 @@
+/* ── Google Fonts (must be first) ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets ──────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    @apply box-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 min-h-screen;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold leading-tight;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-indigo-500 ring-offset-2;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+/* ── Component classes ────────────────────────────────────────────────────── */
+@layer components {
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize transition-all;
+  }
+  .badge-green    { @apply bg-emerald-50 text-emerald-700 border border-emerald-200/60; }
+  .badge-emerald  { @apply bg-emerald-100 text-emerald-800 border border-emerald-300/60; }
+  .badge-blue     { @apply bg-indigo-50 text-indigo-700 border border-indigo-200/60; }
+  .badge-amber    { @apply bg-amber-50 text-amber-700 border border-amber-200/60; }
+  .badge-red      { @apply bg-rose-50 text-rose-700 border border-rose-200/60; }
+  .badge-slate    { @apply bg-slate-100 text-slate-600 border border-slate-200/60; }
+  .badge-violet   { @apply bg-violet-50 text-violet-700 border border-violet-200/60; }
+
+  .card-modern {
+    @apply bg-white rounded-2xl border border-slate-200/70 shadow-sm transition-all duration-200 hover:shadow-md hover:border-slate-300/80;
+  }
+
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+
+  .skeleton {
+    @apply bg-slate-200/80 rounded-lg animate-pulse;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Stepper */
+  .stepper {
+    @apply flex items-center justify-between;
+  }
+
+  /* Animated counter */
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-count-up { animation: countUp 0.5s ease-out forwards; }
+
+  /* Fade in */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+
+  /* Slide transitions for wizard steps */
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .animate-slide-right { animation: slideInRight 0.3s ease-out forwards; }
+  .animate-slide-left { animation: slideInLeft 0.3s ease-out forwards; }
+
+  /* Pulse for sending status */
+  .animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+  /* Live log scroll container */
+  .email-log { max-height: 320px; overflow-y: auto; }
+  .email-log::-webkit-scrollbar { width: 4px; }
+  .email-log::-webkit-scrollbar-track { background: transparent; }
+  .email-log::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+  /* Stagger delays */
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+
+  /* Quill Editor Modern Overrides */
+  .quill-editor {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+  .quill-editor .ql-toolbar {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    background-color: #f8fafc !important;
+    padding: 8px 12px !important;
+    border-top-left-radius: 0.75rem !important;
+    border-top-right-radius: 0.75rem !important;
+  }
+  .quill-editor .ql-toolbar button {
+    border-radius: 4px !important;
+    margin-right: 2px !important;
+  }
+  .quill-editor .ql-toolbar button:hover {
+    background-color: #e2e8f0 !important;
+  }
+  .quill-editor .ql-container {
+    border: none !important;
+    flex: 1 !important;
+    font-size: 0.925rem !important;
+    font-family: inherit !important;
+    min-height: 280px !important;
+    overflow-y: auto !important;
+    border-bottom-left-radius: 0.75rem !important;
+    border-bottom-right-radius: 0.75rem !important;
+  }
+  .quill-editor .ql-editor {
+    min-height: 280px !important;
+    padding: 16px !important;
+    line-height: 1.65 !important;
+  }
+  .quill-editor .ql-editor.ql-blank::before {
+    font-style: normal !important;
+    color: #94a3b8 !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* ── Advanced Upload Animations ─────────────────────────────────────── */
+
+  /* Scale-in for stats cards */
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate-scale-in { animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+  /* Stagger entrance for table rows */
+  @keyframes rowSlideIn {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .animate-row-in { animation: rowSlideIn 0.25s ease-out forwards; }
+
+  /* Shimmer for parsing state */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  /* Expand down for mapping panel */
+  @keyframes expandDown {
+    from { opacity: 0; max-height: 0; }
+    to { opacity: 1; max-height: 500px; }
+  }
+  .animate-expand { animation: expandDown 0.4s ease-out forwards; overflow: hidden; }
+
+  /* Subtle pulse for CTA button */
+  @keyframes subtlePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+    50% { box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.15); }
+  }
+  .animate-cta-pulse { animation: subtlePulse 2s ease-in-out infinite; }
+
+  /* Success checkmark bounce */
+  @keyframes checkBounce {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  .animate-check-bounce { animation: checkBounce 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+  /* Upload area transition */
+  @keyframes uploadFadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+  }
+  .animate-upload-out { animation: uploadFadeOut 0.25s ease-in forwards; }
+
+  /* Floating animation for hero elements */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-float { animation: float 3s ease-in-out infinite; }
+
+  /* Gradient animation */
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  /* Smooth scale on hover */
+  .hover-scale {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+}

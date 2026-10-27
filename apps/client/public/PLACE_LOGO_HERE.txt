@@ -1,0 +1,1 @@
+﻿Place your logo.png file here. The Logo component will automatically detect and use it.

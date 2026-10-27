@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# Pre-commit hook — runs lint-staged on staged files only.
+# This is fast: only the files you're about to commit are processed.
+# Full project lint runs in CI — this is just the local safety net.
+npx lint-staged
